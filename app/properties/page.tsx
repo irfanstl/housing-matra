@@ -1,0 +1,103 @@
+"use client";
+
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { properties } from "@/data/properties";
+import PropertyCard from "@/components/PropertyCard";
+import PropertyFilter from "@/components/PropertyFilter";
+import { motion } from "framer-motion";
+import { RotateCcw } from "lucide-react";
+
+function PropertiesPageContent() {
+  const searchParams = useSearchParams();
+  
+  const [filters, setFilters] = useState({
+    city: searchParams.get("city") || "All",
+    rooms: searchParams.get("rooms") || "Any"
+  });
+
+  const getFilteredProperties = () => {
+    let result = properties;
+
+    if (filters.city !== "All") {
+      result = result.filter(p => p.city === filters.city);
+    }
+    
+    if (filters.rooms !== "Any") {
+      if (filters.rooms === "4+") {
+        result = result.filter(p => p.rooms >= 4);
+      } else {
+        result = result.filter(p => p.rooms.toString() === filters.rooms);
+      }
+    }
+
+    return result;
+  };
+
+  const filteredProperties = getFilteredProperties();
+
+  const handleFilter = (newFilters: typeof filters) => {
+    setFilters(newFilters);
+  };
+
+  const resetFilters = () => {
+    setFilters({ city: "All", rooms: "Any" });
+  };
+
+  return (
+    <div className="pt-32 pb-20 px-6 lg:px-12 xl:px-16 max-w-[1600px] mx-auto w-full min-h-screen">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-4xl font-medium tracking-tight mb-2">Available Properties</h1>
+          <p className="text-body/75">Find your ideal home from our selection of premium apartments.</p>
+        </motion.div>
+        <motion.button 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          onClick={resetFilters}
+          className="flex items-center gap-2 text-sm font-medium text-body/75 hover:text-dark transition-colors"
+        >
+          <RotateCcw className="w-4 h-4" /> Reset Filters
+        </motion.button>
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="mb-12"
+      >
+        <PropertyFilter onFilter={handleFilter} compact={false} />
+      </motion.div>
+
+      {filteredProperties.length === 0 ? (
+        <div className="py-20 text-center">
+          <h3 className="text-xl font-medium mb-2">No properties found</h3>
+          <p className="text-body/75">Try adjusting your search filters.</p>
+        </div>
+      ) : (
+        <motion.div 
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {filteredProperties.map((prop, idx) => (
+            <PropertyCard key={prop.code} property={prop} index={idx} />
+          ))}
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+export default function PropertiesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading properties...</div>}>
+      <PropertiesPageContent />
+    </Suspense>
+  );
+}

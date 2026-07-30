@@ -144,7 +144,7 @@ export default function AboutSection() {
             {/* Image Circle (Centered: 280-210 = 70 / 2 = 35) */}
             <div className="absolute top-[35px] left-[35px] w-[210px] h-[210px] rounded-full overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.12)] border-[5px] border-white z-10">
               <Image 
-                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=600"
+                src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600"
                 alt="Elegant Living Room"
                 fill
                 className="object-cover"
@@ -165,7 +165,7 @@ export default function AboutSection() {
             {/* Image Circle (Centered: 240-180 = 60 / 2 = 30) */}
             <div className="absolute top-[30px] left-[30px] w-[180px] h-[180px] rounded-full overflow-hidden shadow-[0_6px_30px_rgba(0,0,0,0.10)] border-[5px] border-white z-20">
               <Image 
-                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=600"
+                src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=600"
                 alt="Modern Interior"
                 fill
                 className="object-cover"
@@ -185,9 +185,9 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`${feat.bg} p-6 lg:p-7 rounded-xl flex flex-col items-start shadow-[0_2px_16px_rgba(0,0,0,0.05)] hover:shadow-[0_6px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-black/[0.04]`}
+                className={`${feat.bg} p-6 lg:p-7 rounded-2xl flex flex-col items-start shadow-[0_2px_16px_rgba(0,0,0,0.05)] hover:shadow-[0_6px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-black/[0.04]`}
               >
-                <div className="bg-surface p-3 rounded-md shadow-sm mb-4 border border-black/[0.03]">
+                <div className="bg-surface p-3 rounded-lg shadow-sm mb-4 border border-black/[0.03]">
                   {feat.icon}
                 </div>
                 <h4 className="font-medium text-dark mb-2">{feat.title}</h4>
@@ -205,7 +205,7 @@ export default function AboutSection() {
             >
               <Link 
                 href="/contact"
-                className="pointer-events-auto bg-brand hover:bg-brand-hover text-white text-base font-medium px-8 py-4 rounded-xl shadow-[0_8px_30px_rgba(107,125,108,0.35)] hover:shadow-[0_12px_40px_rgba(107,125,108,0.45)] hover:scale-105 transition-all flex items-center gap-2 border-4 border-white"
+                className="pointer-events-auto bg-brand hover:bg-brand-hover text-white text-base font-medium px-8 py-4 rounded-2xl shadow-[0_8px_30px_rgba(107,125,108,0.35)] hover:shadow-[0_12px_40px_rgba(107,125,108,0.45)] hover:scale-105 transition-all flex items-center gap-2 border-4 border-white"
               >
                 Contact Us <ArrowRight className="w-4 h-4" />
               </Link>

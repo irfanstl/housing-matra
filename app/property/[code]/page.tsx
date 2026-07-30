@@ -34,86 +34,95 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
         <ArrowLeft className="w-4 h-4" /> Back to Properties
       </Link>
 
-      <Gallery images={property.gallery} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-12">
-        {/* Left Col - Details */}
-        <div className="lg:col-span-2 flex flex-col gap-10">
-          
-          {/* Header Info */}
+      {/* Header Info */}
+      <div className="mb-8">
+        <div className="flex justify-between items-start mb-4">
           <div>
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h1 className="text-3xl font-medium tracking-tight mb-2 text-dark font-serif">{property.title}</h1>
-                <p className="text-lg text-body/75">{property.city} • {property.area}m² • {property.rooms} Rooms</p>
-              </div>
-              <div className="bg-brand/10 text-brand font-semibold px-4 py-2 rounded-md text-sm border border-brand/20">
-                {property.code}
-              </div>
-            </div>
-            <p className="text-body leading-relaxed text-lg font-light">
-              {property.description}
-            </p>
+            <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-2 text-dark font-serif">{property.title}</h1>
+            <p className="text-lg text-body/75">{property.city}, {property.state} • {property.area}m² • {property.rooms} Rooms • €{property.price} / Month</p>
           </div>
+          <div className="bg-brand/10 text-brand font-semibold px-4 py-2 rounded-md text-sm border border-brand/20 flex-shrink-0">
+            {property.code}
+          </div>
+        </div>
+        <p className="text-body leading-relaxed text-lg font-light max-w-4xl">
+          {property.description}
+        </p>
+      </div>
 
-          {/* Key Facts */}
-          <div>
-            <h2 className="text-xl font-medium mb-6">Key Facts</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-4">
+      {/* Property Images Gallery */}
+      <div className="mb-10">
+        <Gallery images={property.gallery} />
+      </div>
+
+      {/* Boxed Quick Details Card (Key Facts, Amenities, Nearby Places) - Below Property Images */}
+      <div className="bg-card border border-black/[0.05] rounded-2xl p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.03)] mb-10">
+        <h2 className="text-base font-bold uppercase tracking-wider text-dark border-b border-black/[0.04] pb-3.5 mb-6">
+          Quick Details & Specifications
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* Key Facts (including Furnished) */}
+          <div className="bg-surface/50 p-5 rounded-xl border border-black/[0.02] flex flex-col justify-between">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-body/70 mb-4">Key Facts</h3>
+            <div className="grid grid-cols-2 gap-y-4 gap-x-2">
               <div>
-                <p className="text-sm text-body/60 mb-1">Floor</p>
-                <p className="font-medium text-dark">{property.floor}</p>
+                <p className="text-[10px] uppercase font-bold text-body/50 tracking-wider mb-0.5">Floor</p>
+                <p className="font-semibold text-dark text-sm">{property.floor}</p>
               </div>
               <div>
-                <p className="text-sm text-body/60 mb-1">Balcony</p>
-                <p className="font-medium text-dark">{property.balcony}</p>
+                <p className="text-[10px] uppercase font-bold text-body/50 tracking-wider mb-0.5">Balcony</p>
+                <p className="font-semibold text-dark text-sm">{property.balcony}</p>
               </div>
               <div>
-                <p className="text-sm text-body/60 mb-1">Parking</p>
-                <p className="font-medium text-dark">{property.parking}</p>
+                <p className="text-[10px] uppercase font-bold text-body/50 tracking-wider mb-0.5">Parking</p>
+                <p className="font-semibold text-dark text-sm">{property.parking}</p>
               </div>
               <div>
-                <p className="text-sm text-body/60 mb-1">Furnished</p>
-                <p className="font-medium text-dark">{property.furnished}</p>
+                <p className="text-[10px] uppercase font-bold text-body/50 tracking-wider mb-0.5">Furnished</p>
+                <p className="font-semibold text-dark text-sm">{property.furnished}</p>
               </div>
             </div>
           </div>
 
           {/* Amenities */}
-          <div>
-            <h2 className="text-xl font-medium mb-6">Amenities</h2>
-            <div className="flex flex-wrap gap-3">
+          <div className="bg-surface/50 p-5 rounded-xl border border-black/[0.02]">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-body/70 mb-4">Amenities</h3>
+            <div className="flex flex-wrap gap-2">
               {property.amenities.map(amenity => (
-                <div key={amenity} className="flex items-center gap-2 bg-card px-4 py-2 rounded-md shadow-sm text-sm font-medium text-body/90 border border-black/[0.04]">
+                <div key={amenity} className="flex items-center gap-1.5 bg-card px-3 py-1.5 rounded-lg shadow-sm text-xs font-semibold text-body/90 border border-black/[0.04]">
                   {getAmenityIcon(amenity)}
-                  {amenity}
+                  <span>{amenity}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Nearby */}
-          <div>
-            <h2 className="text-xl font-medium mb-6">Nearby Places</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Nearby Places */}
+          <div className="bg-surface/50 p-5 rounded-xl border border-black/[0.02]">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-body/70 mb-4">Nearby Places</h3>
+            <div className="flex flex-col gap-2 max-h-[160px] overflow-y-auto pr-1">
               {property.nearby.map(place => (
-                <div key={place.name} className="flex justify-between items-center bg-card p-4 rounded-md shadow-sm border border-black/[0.04]">
-                  <span className="font-medium text-sm text-dark">{place.name}</span>
-                  <span className="text-sm text-body/80 bg-surface px-3 py-1 rounded-md border border-black/[0.03]">{place.distance}</span>
+                <div key={place.name} className="flex justify-between items-center bg-card p-2.5 rounded-lg shadow-sm border border-black/[0.04]">
+                  <span className="font-semibold text-xs text-dark truncate max-w-[130px]">{place.name}</span>
+                  <span className="text-[10px] text-body/80 bg-surface px-2 py-0.5 rounded border border-black/[0.03] flex-shrink-0">{place.distance}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Map */}
-          <div>
-            <h2 className="text-xl font-medium mb-6">Location</h2>
-            <Map lat={property.coordinates.lat} lng={property.coordinates.lng} />
-          </div>
-          
         </div>
+      </div>
 
-        {/* Right Col - Form */}
+      {/* Map & Inquiry Sticky Form grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-12">
+        {/* Left Column - Location map */}
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          <h2 className="text-xl font-semibold text-dark font-serif mb-2">Location</h2>
+          <Map lat={property.coordinates.lat} lng={property.coordinates.lng} />
+        </div>
+        
+        {/* Right Column - Booking sticky form */}
         <div className="lg:col-span-1">
           <div className="sticky top-32">
             <SmallForm property={property} />

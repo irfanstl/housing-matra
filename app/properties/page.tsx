@@ -12,15 +12,46 @@ function PropertiesPageContent() {
   const searchParams = useSearchParams();
   
   const [filters, setFilters] = useState({
+    search: searchParams.get("search") || "",
+    state: searchParams.get("state") || "All",
     city: searchParams.get("city") || "All",
+    propertyType: searchParams.get("propertyType") || "All",
+    budget: searchParams.get("budget") || "Any",
     rooms: searchParams.get("rooms") || "Any"
   });
 
   const getFilteredProperties = () => {
     let result = properties;
 
+    if (filters.search.trim() !== "") {
+      const q = filters.search.toLowerCase().trim();
+      result = result.filter(
+        p =>
+          p.title.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.city.toLowerCase().includes(q) ||
+          p.state.toLowerCase().includes(q) ||
+          p.propertyType.toLowerCase().includes(q)
+      );
+    }
+
+    if (filters.state !== "All") {
+      result = result.filter(p => p.state === filters.state);
+    }
+
     if (filters.city !== "All") {
       result = result.filter(p => p.city === filters.city);
+    }
+
+    if (filters.propertyType !== "All") {
+      result = result.filter(p => p.propertyType === filters.propertyType);
+    }
+
+    if (filters.budget !== "Any") {
+      const maxBudget = parseInt(filters.budget, 10);
+      if (!isNaN(maxBudget)) {
+        result = result.filter(p => p.price <= maxBudget);
+      }
     }
     
     if (filters.rooms !== "Any") {
@@ -41,7 +72,14 @@ function PropertiesPageContent() {
   };
 
   const resetFilters = () => {
-    setFilters({ city: "All", rooms: "Any" });
+    setFilters({
+      search: "",
+      state: "All",
+      city: "All",
+      propertyType: "All",
+      budget: "Any",
+      rooms: "Any"
+    });
   };
 
   return (
@@ -72,7 +110,7 @@ function PropertiesPageContent() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="mb-12"
       >
-        <PropertyFilter onFilter={handleFilter} compact={false} />
+        <PropertyFilter onFilter={handleFilter} initialFilters={filters} compact={false} />
       </motion.div>
 
       {filteredProperties.length === 0 ? (

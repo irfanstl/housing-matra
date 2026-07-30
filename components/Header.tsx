@@ -43,7 +43,10 @@ export default function Header() {
   ];
 
   return (
-    <header 
+    <motion.header 
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 pointer-events-auto ${
         scrolled 
           ? "py-3 bg-white/75 backdrop-blur-md border-b border-black/[0.04] shadow-[0_2px_20px_rgba(0,0,0,0.03)]" 
@@ -58,7 +61,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation Menu */}
-        <nav className="flex items-center gap-1 bg-brand/50 backdrop-blur-md border border-brand/30 p-1 rounded-lg shadow-sm">
+        <nav className="flex items-center gap-1 bg-brand/90 backdrop-blur-md border border-brand/40 p-1 rounded-full shadow-md">
           {navItems.map(({ name, href }) => {
             const isActive = href === "/" 
               ? pathname === "/" 
@@ -68,14 +71,14 @@ export default function Header() {
               <Link
                 key={href}
                 href={href}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-110 ${
-                  isActive ? "text-white font-bold" : "text-white/80 hover:text-white"
+                className={`relative px-7 py-2 text-xs font-semibold tracking-wide transition-all duration-300 hover:scale-105 ${
+                  isActive ? "text-brand" : "text-white hover:text-white/80"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="activeNavIndicator"
-                    className="absolute inset-0 bg-white/20 rounded-md -z-10"
+                    className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />
                 )}
@@ -88,6 +91,6 @@ export default function Header() {
         {/* Right side placeholder spacer to keep navigation centered */}
         <div className="hidden md:block w-[180px]"></div>
       </div>
-    </header>
+    </motion.header>
   );
 }

@@ -13,9 +13,20 @@ export default function FeaturedSection() {
   // Get 3 featured properties
   const featured = properties.slice(0, 3);
 
-  const handleFilter = (filters: { city: string; rooms: string }) => {
+  const handleFilter = (filters: {
+    search: string;
+    state: string;
+    city: string;
+    propertyType: string;
+    budget: string;
+    rooms: string;
+  }) => {
     const params = new URLSearchParams();
+    if (filters.search) params.set("search", filters.search);
+    if (filters.state !== "All") params.set("state", filters.state);
     if (filters.city !== "All") params.set("city", filters.city);
+    if (filters.propertyType !== "All") params.set("propertyType", filters.propertyType);
+    if (filters.budget !== "Any") params.set("budget", filters.budget);
     if (filters.rooms !== "Any") params.set("rooms", filters.rooms);
     
     router.push(`/properties?${params.toString()}`);

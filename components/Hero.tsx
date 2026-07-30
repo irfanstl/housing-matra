@@ -37,14 +37,14 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
           <Link 
             href="/properties"
-            className="bg-brand hover:bg-brand-hover text-white text-base md:text-lg font-medium px-8 py-4 rounded-xl shadow-[0_8px_30px_rgba(107,125,108,0.35)] hover:shadow-[0_12px_40px_rgba(107,125,108,0.45)] hover:scale-105 transition-all flex items-center gap-2 border-2 border-brand"
+            className="bg-brand hover:bg-brand-hover text-white text-base md:text-lg font-medium px-8 py-4 rounded-2xl shadow-[0_8px_30px_rgba(107,125,108,0.35)] hover:shadow-[0_12px_40px_rgba(107,125,108,0.45)] hover:scale-105 transition-all flex items-center gap-2 border-2 border-brand"
           >
             Explore Apartments <ArrowRight className="w-5 h-5" />
           </Link>
           
           <Link 
             href="/contact"
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 hover:border-white/50 text-base md:text-lg font-medium px-8 py-4 rounded-xl transition-all flex items-center gap-2 hover:scale-105"
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 hover:border-white/50 text-base md:text-lg font-medium px-8 py-4 rounded-2xl transition-all flex items-center gap-2 hover:scale-105"
           >
             Contact Us <MessageCircle className="w-5 h-5" />
           </Link>

@@ -32,7 +32,7 @@ export default function SmallForm({ property }: SmallFormProps) {
   );
 
   return (
-    <div className="bg-card p-8 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-black/[0.04]">
+    <div className="bg-card p-8 rounded-[36px] shadow-[0_4px_30px_rgba(0,0,0,0.06)] border border-black/[0.04]">
       <div className="flex justify-between items-end mb-6">
         <h3 className="text-xl font-semibold text-dark font-serif">Interested?</h3>
         <span className="text-xs font-semibold text-body/70 uppercase tracking-wider mb-0.5">Form is optional</span>
@@ -44,7 +44,7 @@ export default function SmallForm({ property }: SmallFormProps) {
           placeholder="Name" 
           value={formData.name}
           onChange={handleChange}
-          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
+          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-2xl outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
         />
         <input 
           type="email" 
@@ -52,7 +52,7 @@ export default function SmallForm({ property }: SmallFormProps) {
           placeholder="Email" 
           value={formData.email}
           onChange={handleChange}
-          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
+          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-2xl outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
         />
         <input 
           type="tel" 
@@ -60,7 +60,7 @@ export default function SmallForm({ property }: SmallFormProps) {
           placeholder="Phone" 
           value={formData.phone}
           onChange={handleChange}
-          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
+          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-2xl outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
         />
         <input 
           type="text" 
@@ -68,7 +68,7 @@ export default function SmallForm({ property }: SmallFormProps) {
           placeholder="Current City" 
           value={formData.city}
           onChange={handleChange}
-          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
+          className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-2xl outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm text-dark"
         />
       </div>
       
@@ -78,7 +78,7 @@ export default function SmallForm({ property }: SmallFormProps) {
         rows={3}
         value={formData.message}
         onChange={handleChange}
-        className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm mb-6 resize-none text-dark"
+        className="w-full bg-surface border border-black/[0.04] px-4 py-3 rounded-2xl outline-none focus:ring-2 focus:ring-brand/20 transition-all text-sm mb-6 resize-none text-dark"
       ></textarea>
 
       <div className="flex flex-col items-center">

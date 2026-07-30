@@ -39,6 +39,7 @@ export default function Header() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Properties", href: "/properties" },
+    { name: "Projects", href: "/projects" },
     { name: "Contact Us", href: "/contact" },
   ];
 
@@ -71,7 +72,7 @@ export default function Header() {
               <Link
                 key={href}
                 href={href}
-                className={`relative px-7 py-2 text-xs font-semibold tracking-wide transition-all duration-300 hover:scale-105 ${
+                className={`relative px-4 sm:px-6 md:px-7 py-2 text-[10px] sm:text-xs font-semibold tracking-wide transition-all duration-300 hover:scale-105 ${
                   isActive ? "text-brand" : "text-white hover:text-white/80"
                 }`}
               >

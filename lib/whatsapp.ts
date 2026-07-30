@@ -1,4 +1,5 @@
 import { Property } from "@/data/properties";
+import { Project } from "@/data/projects";
 
 export const generateWhatsAppLink = (
   property: Property,
@@ -66,3 +67,38 @@ export const generateGeneralWhatsAppLink = (
 
   return `https://wa.me/${phoneNum}?text=${encodeURIComponent(text)}`;
 };
+
+export const generateProjectWhatsAppLink = (
+  project: Project,
+  name: string,
+  phone: string,
+  email: string,
+  userCity: string,
+  message: string
+) => {
+  const phoneNum = "919561028609";
+  
+  let text = `Hi, I am interested in this real estate project: ${project.title}.`;
+
+  const details = [];
+  if (name) details.push(`Name: ${name}`);
+  if (phone) details.push(`Phone: ${phone}`);
+  if (email) details.push(`Email: ${email}`);
+  if (userCity) details.push(`City: ${userCity}`);
+  if (message) details.push(`Message: ${message}`);
+
+  if (details.length > 0) {
+    text += `\n\n*My Details*\n${details.join('\n')}`;
+  }
+
+  text += `\n\n*Project Details*\n`;
+  text += `Name: ${project.title}\n`;
+  text += `Developer: ${project.developer}\n`;
+  text += `Location: ${project.location}\n`;
+  text += `Configuration: ${project.configuration}\n`;
+  text += `Price Range: ${project.priceRange}\n`;
+  text += `RERA Number: ${project.reraNumber}`;
+
+  return `https://wa.me/${phoneNum}?text=${encodeURIComponent(text)}`;
+};
+

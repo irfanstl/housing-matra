@@ -39,7 +39,7 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
         <div className="flex justify-between items-start mb-4">
           <div>
             <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-2 text-dark font-serif">{property.title}</h1>
-            <p className="text-lg text-body/75">{property.city}, {property.state} • {property.area}m² • {property.rooms} Rooms • €{property.price} / Month</p>
+            <p className="text-lg text-body/75">{property.city}, {property.state} • {property.area} sq.ft • {property.rooms} BHK • {property.price >= 100 ? `₹${(property.price / 100).toFixed(2)} Cr` : `₹${property.price} Lakhs`}</p>
           </div>
           <div className="bg-brand/10 text-brand font-semibold px-4 py-2 rounded-md text-sm border border-brand/20 flex-shrink-0">
             {property.code}

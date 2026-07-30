@@ -8,26 +8,26 @@ import { ArrowRight, CheckCircle2, Shield, Users, MessageSquare, Home, Heart, Us
 const features = [
   {
     icon: <Shield className="w-6 h-6 text-brand" />,
-    title: "Complete Maintenance",
-    desc: "Total commitment to the upkeep of your flat.",
+    title: "Legal Verification",
+    desc: "Comprehensive vetting of titles, deeds, and approvals.",
     bg: "bg-card"
   },
   {
     icon: <CheckCircle2 className="w-6 h-6 text-brand" />,
     title: "Full Transparency",
-    desc: "Taking care of your interests and money.",
+    desc: "Clear transaction pricing with zero hidden charges.",
     bg: "bg-card"
   },
   {
     icon: <Users className="w-6 h-6 text-brand" />,
-    title: "Careful Selection",
-    desc: "We only choose the most reliable tenants.",
+    title: "Curated Listings",
+    desc: "Handpicked premium apartments from verified sellers.",
     bg: "bg-card"
   },
   {
     icon: <MessageSquare className="w-6 h-6 text-brand" />,
-    title: "Quick Response",
-    desc: "Highly attentive, personalized approach.",
+    title: "Expert Guidance",
+    desc: "Dedicated support from inspection to final registry.",
     bg: "bg-card"
   }
 ];
@@ -36,17 +36,17 @@ const aboutBlocks = [
   {
     icon: <Home className="w-5 h-5 text-brand" />,
     title: "We keep it personal.",
-    desc: "Finding the right home should feel easy and stress-free."
+    desc: "Finding the right property should be simple, transparent, and stress-free."
   },
   {
     icon: <Heart className="w-5 h-5 text-brand" />,
-    title: "Homes we're proud of.",
-    desc: "Carefully selected, well-maintained apartments you'll love."
+    title: "Properties we're proud of.",
+    desc: "Carefully verified homes, apartments, villas, and commercial spaces chosen for their quality and value."
   },
   {
     icon: <UserCheck className="w-5 h-5 text-brand" />,
     title: "Here for you.",
-    desc: "From your first message to move-in and beyond."
+    desc: "From your first inquiry and property visit to negotiations, paperwork, and final ownership—we're with you every step of the way."
   }
 ];
 

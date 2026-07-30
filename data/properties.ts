@@ -5,7 +5,7 @@ export interface Property {
   state: string;
   propertyType: string;
   rooms: number;
-  price: number;
+  price: number; // Stored in Lakhs of INR (e.g., 95 = 95 Lakhs, 120 = 1.20 Crore)
   area: number;
   availability: string;
   coordinates: {
@@ -31,9 +31,9 @@ export const properties: Property[] = [
     state: "Maharashtra",
     propertyType: "Apartment",
     rooms: 2,
-    price: 1200,
+    price: 120, // 1.20 Crore
     area: 48,
-    availability: "01.08.2026",
+    availability: "Immediate",
     coordinates: { lat: 19.0760, lng: 72.8777 },
     gallery: [
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1000",
@@ -60,9 +60,9 @@ export const properties: Property[] = [
     state: "Maharashtra",
     propertyType: "Loft",
     rooms: 3,
-    price: 1800,
+    price: 180, // 1.80 Crore
     area: 85,
-    availability: "15.09.2026",
+    availability: "Immediate",
     coordinates: { lat: 19.0500, lng: 72.8300 },
     gallery: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000",
@@ -87,9 +87,9 @@ export const properties: Property[] = [
     state: "Delhi",
     propertyType: "Studio",
     rooms: 1,
-    price: 950,
+    price: 95, // 95 Lakhs
     area: 35,
-    availability: "01.07.2026",
+    availability: "Immediate",
     coordinates: { lat: 28.6139, lng: 77.2090 },
     gallery: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1000",
@@ -114,9 +114,9 @@ export const properties: Property[] = [
     state: "Delhi",
     propertyType: "Family Home",
     rooms: 4,
-    price: 2500,
+    price: 250, // 2.50 Crore
     area: 120,
-    availability: "01.10.2026",
+    availability: "Immediate",
     coordinates: { lat: 28.5500, lng: 77.2500 },
     gallery: [
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1000",
@@ -141,9 +141,9 @@ export const properties: Property[] = [
     state: "Karnataka",
     propertyType: "Apartment",
     rooms: 2,
-    price: 1400,
+    price: 140, // 1.40 Crore
     area: 55,
-    availability: "15.08.2026",
+    availability: "Immediate",
     coordinates: { lat: 12.9716, lng: 77.5946 },
     gallery: [
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=1000",
@@ -167,9 +167,9 @@ export const properties: Property[] = [
     state: "Karnataka",
     propertyType: "Flat",
     rooms: 3,
-    price: 1650,
+    price: 165, // 1.65 Crore
     area: 75,
-    availability: "01.09.2026",
+    availability: "Immediate",
     coordinates: { lat: 12.9800, lng: 77.6100 },
     gallery: [
       "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1000",
@@ -193,9 +193,9 @@ export const properties: Property[] = [
     state: "Maharashtra",
     propertyType: "Penthouse",
     rooms: 3,
-    price: 2200,
+    price: 220, // 2.20 Crore
     area: 90,
-    availability: "01.11.2026",
+    availability: "Immediate",
     coordinates: { lat: 18.5204, lng: 73.8567 },
     gallery: [
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=1000",
@@ -219,9 +219,9 @@ export const properties: Property[] = [
     state: "Maharashtra",
     propertyType: "Apartment",
     rooms: 2,
-    price: 1350,
+    price: 135, // 1.35 Crore
     area: 60,
-    availability: "15.07.2026",
+    availability: "Immediate",
     coordinates: { lat: 18.5500, lng: 73.9000 },
     gallery: [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=1000",
@@ -245,9 +245,9 @@ export const properties: Property[] = [
     state: "Maharashtra",
     propertyType: "Apartment",
     rooms: 2,
-    price: 1300,
+    price: 130, // 1.30 Crore
     area: 55,
-    availability: "01.09.2026",
+    availability: "Immediate",
     coordinates: { lat: 19.0600, lng: 72.8500 },
     gallery: [
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1000",
@@ -271,9 +271,9 @@ export const properties: Property[] = [
     state: "Delhi",
     propertyType: "Penthouse",
     rooms: 4,
-    price: 3200,
+    price: 320, // 3.20 Crore
     area: 140,
-    availability: "15.08.2026",
+    availability: "Immediate",
     coordinates: { lat: 28.5300, lng: 77.2400 },
     gallery: [
       "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&q=80&w=1000",
@@ -297,9 +297,9 @@ export const properties: Property[] = [
     state: "Karnataka",
     propertyType: "Apartment",
     rooms: 3,
-    price: 1850,
+    price: 185, // 1.85 Crore
     area: 82,
-    availability: "01.10.2026",
+    availability: "Immediate",
     coordinates: { lat: 12.9800, lng: 77.6200 },
     gallery: [
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1000",
@@ -323,9 +323,9 @@ export const properties: Property[] = [
     state: "Maharashtra",
     propertyType: "Studio",
     rooms: 1,
-    price: 1100,
+    price: 110, // 1.10 Crore
     area: 42,
-    availability: "01.07.2026",
+    availability: "Immediate",
     coordinates: { lat: 18.5600, lng: 73.9100 },
     gallery: [
       "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1000",

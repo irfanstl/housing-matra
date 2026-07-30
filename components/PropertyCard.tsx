@@ -45,7 +45,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
       <div className="px-2 flex flex-col flex-grow">
         <h3 className="font-semibold text-base mb-1 text-dark font-serif tracking-wide">{property.city}</h3>
         <p className="text-body/70 text-xs mb-3 font-medium">
-          {property.rooms} Rooms • {property.area} m²
+          {property.rooms} BHK • {property.area} sq.ft
         </p>
 
         <div className="mt-auto">

@@ -33,7 +33,7 @@ export default function FeaturedSection() {
   };
 
   return (
-    <section className="h-screen flex flex-col justify-center pt-24 pb-8 px-6 lg:px-12 xl:px-16 max-w-[1600px] mx-auto w-full snap-start relative z-20">
+    <section className="min-h-screen flex flex-col justify-center py-28 px-6 lg:px-12 xl:px-16 max-w-[1600px] mx-auto w-full snap-start relative z-20">
       
       {/* Centered Property Search Filter */}
       <div className="w-full max-w-4xl mx-auto mb-10 lg:mb-12">
@@ -49,7 +49,7 @@ export default function FeaturedSection() {
             <div className="w-2 h-2 rounded-full bg-brand/50"></div>
           </div>
           <p className="text-black/60 text-base md:text-lg font-medium max-w-lg">
-            View some of our handpicked apartments available across Germany.
+            View some of our handpicked apartments available across India.
           </p>
         </div>
 

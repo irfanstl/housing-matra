@@ -347,16 +347,20 @@ export default function PropertyFilter({ onFilter, initialFilters, compact = fal
                       Max Budget
                     </label>
                     <span className="text-xs font-bold text-brand">
-                      {budget === "Any" || parseInt(budget, 10) >= 4000 ? "Any Budget" : `€${budget}`}
+                      {budget === "Any" || parseInt(budget, 10) >= 500 
+                        ? "Any Budget" 
+                        : parseInt(budget, 10) >= 100 
+                          ? `₹${(parseInt(budget, 10) / 100).toFixed(2)} Cr` 
+                          : `₹${budget} L`}
                     </span>
                   </div>
                   <div className="flex items-center h-[40px] w-full px-3 bg-surface rounded-2xl border border-black/[0.04]">
                     <input
                       type="range"
-                      min="500"
-                      max="4000"
-                      step="100"
-                      value={budget === "Any" ? "4000" : budget}
+                      min="50"
+                      max="500"
+                      step="10"
+                      value={budget === "Any" ? "500" : budget}
                       onChange={(e) => setBudget(e.target.value)}
                       className="w-full h-1 bg-black/10 rounded-2xl appearance-none cursor-pointer accent-brand"
                     />
@@ -366,7 +370,7 @@ export default function PropertyFilter({ onFilter, initialFilters, compact = fal
                 {/* Rooms Selection */}
                 <div className="flex flex-col">
                   <label className="text-[11px] font-bold text-body/60 uppercase tracking-wider mb-2 px-1">
-                    Rooms
+                    BHK
                   </label>
                   <div className="flex items-center gap-1 bg-surface p-1 rounded-2xl border border-black/[0.04] h-[40px] w-full">
                     {["Any", "1", "2", "3", "4+"].map((r) => {

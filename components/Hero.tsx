@@ -58,10 +58,7 @@ export default function Hero() {
         transition={{ delay: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors cursor-pointer"
         onClick={() => {
-          const container = document.getElementById("home-scroll-container");
-          if (container) {
-            container.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-          }
+          window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
         }}
       >
         <span className="text-xs uppercase tracking-widest font-semibold">Scroll Down</span>

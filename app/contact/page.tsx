@@ -39,7 +39,7 @@ export default function ContactPage() {
         >
           <div className="flex justify-between items-end mb-8">
             <h3 className="text-2xl font-medium">Send us a Message</h3>
-            <span className="text-xs font-semibold text-black/40 uppercase tracking-wider mb-1">(Optional)</span>
+            <span className="text-xs font-semibold text-black/40 uppercase tracking-wider mb-1"></span>
           </div>
           
           <div className="flex flex-col gap-5 mb-8">

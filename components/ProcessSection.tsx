@@ -4,20 +4,20 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const steps = [
-  { num: "Step 1", title: "Choose City", delay: 0 },
-  { num: "Step 2", title: "Browse Apartments", delay: 0.2 },
-  { num: "Step 3", title: "Contact via WhatsApp", delay: 0.4 },
-  { num: "Step 4", title: "Schedule Your Visit", delay: 0.6 },
+  { num: "Step 1", title: "Select Location", delay: 0 },
+  { num: "Step 2", title: "Explore Verified Homes", delay: 0.2 },
+  { num: "Step 3", title: "Connect via WhatsApp", delay: 0.4 },
+  { num: "Step 4", title: "Schedule Site Visit", delay: 0.6 },
 ];
 
 export default function ProcessSection() {
   return (
     <section className="h-screen flex items-center justify-center py-20 px-6 lg:px-12 xl:px-16 max-w-[1600px] mx-auto w-full snap-start">
-      <div className="bg-card rounded-2xl shadow-[0_2px_30px_rgba(0,0,0,0.05)] border border-black/[0.04] w-full flex items-center justify-center">
+      <div className="bg-card rounded-[36px] shadow-[0_2px_30px_rgba(0,0,0,0.05)] border border-black/[0.04] w-full p-10 md:p-16 lg:p-20 flex items-center justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
           
           {/* Left - Overlapping Images */}
-          <div className="relative w-full aspect-square max-w-md lg:max-w-lg mx-auto lg:ml-auto lg:mr-8">
+          <div className="relative w-full aspect-square max-w-[420px] lg:max-w-[500px] mx-auto lg:ml-auto lg:mr-8">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -26,8 +26,8 @@ export default function ProcessSection() {
               className="absolute top-0 left-0 w-[65%] h-[65%] rounded-full overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.15)] border-8 border-white z-10"
             >
               <Image 
-                src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800"
-                alt="Cozy Living Room"
+                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800"
+                alt="Modern Residential Tower Facade"
                 fill
                 className="object-cover"
               />
@@ -40,8 +40,8 @@ export default function ProcessSection() {
               className="absolute bottom-0 right-0 w-[60%] h-[60%] rounded-full overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-8 border-white z-20"
             >
               <Image 
-                src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=800"
-                alt="Modern Bedroom"
+                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800"
+                alt="Luxury Penthouse Living Room"
                 fill
                 className="object-cover"
               />
@@ -52,11 +52,11 @@ export default function ProcessSection() {
           <div className="flex flex-col">
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight leading-tight mb-6">
               We Do More Than<br />
-              Just Rent Apartments.<br />
-              We Create Homes.
+              Just Sell Apartments..<br />
+              We Help You Find Your Perfect Home.
             </h2>
             <p className="text-body/80 text-lg mb-12 max-w-lg font-light">
-              Every apartment is carefully selected, professionally maintained, and prepared with comfort in mind. Our goal is to make renting simple, transparent, and personal from the very first conversation.
+              Every property is carefully selected, thoroughly verified, and presented with complete transparency. Our goal is to make buying a home simple, trustworthy, and personalized from your very first inquiry to the moment you receive the keys.
             </p>
 
             {/* Timeline */}

@@ -10,7 +10,7 @@ export const generateWhatsAppLink = (
 ) => {
   const phoneNum = "919561028609";
   
-  let text = `Hi, I am interested in renting this apartment.`;
+  let text = `Hi, I am interested in buying this apartment.`;
 
   const details = [];
   if (name) details.push(`Name: ${name}`);
@@ -27,9 +27,13 @@ export const generateWhatsAppLink = (
   text += `Title: ${property.title}\n`;
   text += `Code: ${property.code}\n`;
   text += `City: ${property.city}\n`;
-  text += `Rooms: ${property.rooms}\n`;
-  text += `Area: ${property.area}m²\n`;
-  text += `Price: €${property.price}\n`;
+  text += `BHK: ${property.rooms} BHK\n`;
+  text += `Area: ${property.area} sq.ft\n`;
+  
+  const formattedPrice = property.price >= 100 
+    ? `₹${(property.price / 100).toFixed(2)} Cr` 
+    : `₹${property.price} Lakhs`;
+  text += `Price: ${formattedPrice}\n`;
   text += `Floor: ${property.floor}\n`;
   text += `Balcony: ${property.balcony}\n`;
   text += `Parking: ${property.parking}\n`;
@@ -47,7 +51,7 @@ export const generateGeneralWhatsAppLink = (
 ) => {
   const phoneNum = "919561028609";
   
-  let text = `Hi,\n\nI am interested in renting a flat.`;
+  let text = `Hi,\n\nI am interested in buying a flat.`;
 
   const details = [];
   if (name) details.push(`Name: ${name}`);

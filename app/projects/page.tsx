@@ -11,10 +11,10 @@ function ProjectsPageContent() {
   const searchParams = useSearchParams();
   
   const [filters, setFilters] = useState({
-    search: searchParams.get("search") || "",
-    city: searchParams.get("city") || "All",
-    developer: searchParams.get("developer") || "All",
-    status: searchParams.get("status") || "All"
+    search: searchParams?.get("search") || "",
+    city: searchParams?.get("city") || "All",
+    developer: searchParams?.get("developer") || "All",
+    status: searchParams?.get("status") || "All"
   });
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);

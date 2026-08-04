@@ -16,7 +16,7 @@ function ManagePropertiesContent() {
   const [loading, setLoading] = useState(true);
   
   // Set initial tab from query string or default to 'manage'
-  const tabParam = searchParams.get("tab");
+  const tabParam = searchParams?.get("tab");
   const [viewMode, setViewMode] = useState<"manage" | "add">(
     (tabParam as "manage" | "add") || "manage"
   );
@@ -72,12 +72,12 @@ function ManagePropertiesContent() {
   };
 
   const [filters, setFilters] = useState({
-    search: searchParams.get("search") || "",
-    state: searchParams.get("state") || "All",
-    city: searchParams.get("city") || "All",
-    propertyType: searchParams.get("propertyType") || "All",
-    budget: searchParams.get("budget") || "Any",
-    rooms: searchParams.get("rooms") || "Any"
+    search: searchParams?.get("search") || "",
+    state: searchParams?.get("state") || "All",
+    city: searchParams?.get("city") || "All",
+    propertyType: searchParams?.get("propertyType") || "All",
+    budget: searchParams?.get("budget") || "Any",
+    rooms: searchParams?.get("rooms") || "Any"
   });
 
   const getFilteredProperties = () => {

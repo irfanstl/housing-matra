@@ -64,9 +64,11 @@ export default function Header() {
         {/* Navigation Menu */}
         <nav className="flex items-center gap-1 bg-brand/90 backdrop-blur-md border border-brand/40 p-1 rounded-full shadow-md">
           {navItems.map(({ name, href }) => {
-            const isActive = href === "/" 
-               ? pathname === "/" 
-               : (pathname === href || pathname.startsWith(href));
+            const isActive = pathname
+              ? (href === "/" 
+                 ? pathname === "/" 
+                 : (pathname === href || pathname.startsWith(href)))
+              : false;
               
             return (
               <Link

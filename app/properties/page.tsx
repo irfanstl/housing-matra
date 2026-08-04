@@ -31,12 +31,12 @@ function PropertiesPageContent() {
   }, []);
 
   const [filters, setFilters] = useState({
-    search: searchParams.get("search") || "",
-    state: searchParams.get("state") || "All",
-    city: searchParams.get("city") || "All",
-    propertyType: searchParams.get("propertyType") || "All",
-    budget: searchParams.get("budget") || "Any",
-    rooms: searchParams.get("rooms") || "Any"
+    search: searchParams?.get("search") || "",
+    state: searchParams?.get("state") || "All",
+    city: searchParams?.get("city") || "All",
+    propertyType: searchParams?.get("propertyType") || "All",
+    budget: searchParams?.get("budget") || "Any",
+    rooms: searchParams?.get("rooms") || "Any"
   });
 
   const getFilteredProperties = () => {

@@ -40,10 +40,6 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
   }
 
   if (!property) {
-    property = properties.find(p => p.code.toLowerCase() === code.toLowerCase()) || null;
-  }
-
-  if (!property) {
     notFound();
   }
 
@@ -158,8 +154,15 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
   );
 }
 
-export function generateStaticParams() {
-  return properties.map((property) => ({
-    code: property.code.toLowerCase(),
-  }));
+export async function generateStaticParams() {
+  try {
+    await dbConnect();
+    const dbProperties = await PropertyModel.find({}, { code: 1 }).lean();
+    return dbProperties.map((p) => ({
+      code: p.code.toLowerCase(),
+    }));
+  } catch (error) {
+    console.error("Failed to query codes for static params:", error);
+    return [];
+  }
 }

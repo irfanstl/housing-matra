@@ -1,6 +1,5 @@
 import dbConnect from "@/backend/config/db";
 import PropertyModel from "@/backend/models/Property";
-import { properties as staticProperties } from "@/data/properties";
 import { notFound } from "next/navigation";
 import EditPropertyForm from "./EditPropertyForm";
 
@@ -22,10 +21,7 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ c
     console.error("Failed to query property for editing:", error);
   }
 
-  // Fallback to static mock properties
-  if (!property) {
-    property = staticProperties.find((p) => p.code.toLowerCase() === code.toLowerCase()) || null;
-  }
+
 
   if (!property) {
     notFound();
@@ -34,8 +30,15 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ c
   return <EditPropertyForm initialProperty={property} />;
 }
 
-export function generateStaticParams() {
-  return staticProperties.map((property) => ({
-    code: property.code.toLowerCase(),
-  }));
+export async function generateStaticParams() {
+  try {
+    await dbConnect();
+    const dbProperties = await PropertyModel.find({}, { code: 1 }).lean();
+    return dbProperties.map((p) => ({
+      code: p.code.toLowerCase(),
+    }));
+  } catch (error) {
+    console.error("Failed to query codes for static params:", error);
+    return [];
+  }
 }

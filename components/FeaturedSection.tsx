@@ -1,17 +1,37 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { properties } from "@/data/properties";
+import { useState, useEffect } from "react";
+import { Property } from "@/data/properties";
 import PropertyFilter from "./PropertyFilter";
 import PropertyCard from "./PropertyCard";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 
 export default function FeaturedSection() {
   const router = useRouter();
   
-  // Get 3 featured properties
-  const featured = properties.slice(0, 3);
+  const [featured, setFeatured] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/properties")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
+      .then((data: Property[]) => {
+        // Filter to display unsold featured listings first
+        const active = data.filter((p) => p.status !== "Sold").slice(0, 3);
+        setFeatured(active.length > 0 ? active : data.slice(0, 3));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch featured properties:", err);
+        setLoading(false);
+      });
+  }, []);
 
   const handleFilter = (filters: {
     search: string;
@@ -54,11 +74,22 @@ export default function FeaturedSection() {
         </div>
 
         {/* Featured Grid - 3 Items */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 w-full max-w-7xl mx-auto">
-          {featured.map((prop, idx) => (
-            <PropertyCard key={prop.code} property={prop} index={idx} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="py-20 w-full flex flex-col items-center justify-center gap-3">
+            <Loader2 className="w-8 h-8 text-brand animate-spin" />
+            <p className="text-xs text-body/70 font-semibold uppercase tracking-wider">Loading featured apartments...</p>
+          </div>
+        ) : featured.length === 0 ? (
+          <div className="py-20 w-full text-center">
+            <p className="text-body/70">No properties available at the moment.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 w-full max-w-7xl mx-auto">
+            {featured.map((prop, idx) => (
+              <PropertyCard key={prop.code} property={prop} index={idx} />
+            ))}
+          </div>
+        )}
 
         {/* View All Button */}
         <Link 

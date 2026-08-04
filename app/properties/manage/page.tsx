@@ -7,12 +7,12 @@ import PropertyCard from "@/components/PropertyCard";
 import PropertyFilter from "@/components/PropertyFilter";
 import AddPropertyForm from "@/components/AddPropertyForm";
 import { motion } from "framer-motion";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, Loader2 } from "lucide-react";
 
 function ManagePropertiesContent() {
   const searchParams = useSearchParams();
   
-  const [dbProperties, setDbProperties] = useState<typeof properties>(properties);
+  const [dbProperties, setDbProperties] = useState<typeof properties>([]);
   const [loading, setLoading] = useState(true);
   
   // Set initial tab from query string or default to 'manage'
@@ -38,7 +38,7 @@ function ManagePropertiesContent() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("API error, using static fallback:", err);
+        console.error("API error:", err);
         setLoading(false);
       });
   }, []);
@@ -205,7 +205,12 @@ function ManagePropertiesContent() {
             <PropertyFilter onFilter={handleFilter} initialFilters={filters} compact={false} />
           </motion.div>
 
-          {filteredProperties.length === 0 ? (
+          {loading ? (
+            <div className="py-20 w-full flex flex-col items-center justify-center gap-3">
+              <Loader2 className="w-8 h-8 text-brand animate-spin" />
+              <p className="text-xs text-body/70 font-semibold uppercase tracking-wider">Loading properties...</p>
+            </div>
+          ) : filteredProperties.length === 0 ? (
             <div className="py-20 text-center">
               <h3 className="text-xl font-medium mb-2">No properties found</h3>
               <p className="text-body/75">Try adjusting your search filters.</p>

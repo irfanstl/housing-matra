@@ -65,8 +65,8 @@ export default function Header() {
         <nav className="flex items-center gap-1 bg-brand/90 backdrop-blur-md border border-brand/40 p-1 rounded-full shadow-md">
           {navItems.map(({ name, href }) => {
             const isActive = href === "/" 
-              ? pathname === "/" 
-              : (pathname === href || pathname.startsWith(href));
+               ? pathname === "/" 
+               : (pathname === href || pathname.startsWith(href));
               
             return (
               <Link
@@ -89,15 +89,8 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right side list property action */}
-        <div className="hidden md:block w-[180px] text-right">
-          <Link 
-            href="/properties/manage?tab=add" 
-            className="inline-flex items-center justify-center px-5 py-2 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-brand text-white hover:bg-brand-hover transition-all duration-300 shadow-sm border border-brand/20 hover:scale-105"
-          >
-            List Property
-          </Link>
-        </div>
+        {/* Empty spacer to keep navigation centered */}
+        <div className="hidden md:block w-[180px]"></div>
       </div>
     </motion.header>
   );

@@ -8,10 +8,11 @@ export interface Property {
   price: number; // Stored in Lakhs of INR (e.g., 95 = 95 Lakhs, 120 = 1.20 Crore)
   area: number;
   availability: string;
-  coordinates: {
+  coordinates?: {
     lat: number;
     lng: number;
   };
+  address?: string;
   gallery: string[];
   amenities: string[];
   nearby: { name: string; distance: string }[];

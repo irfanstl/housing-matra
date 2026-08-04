@@ -8,9 +8,16 @@ import { Property } from "@/data/properties";
 interface PropertyCardProps {
   property: Property;
   index?: number;
+  manageMode?: boolean;
+  onDelete?: (code: string) => void;
 }
 
-export default function PropertyCard({ property, index = 0 }: PropertyCardProps) {
+export default function PropertyCard({
+  property,
+  index = 0,
+  manageMode = false,
+  onDelete
+}: PropertyCardProps) {
   const isSold = property.status === "Sold";
   
   return (
@@ -49,7 +56,23 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
         </p>
 
         <div className="mt-auto">
-          {isSold ? (
+          {manageMode ? (
+            <div className="flex gap-2">
+              <Link
+                href={`/properties/edit/${property.code.toLowerCase()}`}
+                className="flex-grow py-2 text-center bg-brand/10 text-brand hover:bg-brand hover:text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 border border-brand/20"
+              >
+                Edit
+              </Link>
+              <button
+                type="button"
+                onClick={() => onDelete && onDelete(property.code)}
+                className="flex-grow py-2 text-center bg-red-50 text-red-600 hover:bg-red-600 hover:text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 border border-red-200"
+              >
+                Delete
+              </button>
+            </div>
+          ) : isSold ? (
             <Link
               href={`/property/${property.code.toLowerCase()}`}
               className="block w-full py-2.5 text-center bg-accent-blue/10 text-accent-blue hover:bg-accent-blue hover:text-white rounded-2xl text-sm font-semibold transition-all duration-300 hover:scale-105"

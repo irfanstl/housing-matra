@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Car, Wifi, Coffee, Wind, Maximize2 } from "lucide-react";
-import { properties } from "@/data/properties";
+import { ArrowLeft, CheckCircle2, Car, Wifi, Coffee, Wind, Maximize2, MapPin } from "lucide-react";
+import { Property, properties } from "@/data/properties";
 import Gallery from "@/components/Gallery";
 import Map from "@/components/Map";
 import SmallForm from "@/components/SmallForm";
+import dbConnect from "@/backend/config/db";
+import PropertyModel from "@/backend/models/Property";
 
 // Helper for amenities icons mapping
 const getAmenityIcon = (name: string) => {
@@ -22,7 +24,24 @@ const getAmenityIcon = (name: string) => {
 export default async function PropertyDetailsPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
   
-  const property = properties.find(p => p.code.toLowerCase() === code.toLowerCase());
+  let property: Property | null = null;
+
+  try {
+    await dbConnect();
+    const dbProperty = await PropertyModel.findOne({
+      code: { $regex: new RegExp(`^${code}$`, "i") }
+    }).lean();
+
+    if (dbProperty) {
+      property = JSON.parse(JSON.stringify(dbProperty));
+    }
+  } catch (error) {
+    console.error("Failed to fetch property from MongoDB:", error);
+  }
+
+  if (!property) {
+    property = properties.find(p => p.code.toLowerCase() === code.toLowerCase()) || null;
+  }
 
   if (!property) {
     notFound();
@@ -119,7 +138,13 @@ export default async function PropertyDetailsPage({ params }: { params: Promise<
         {/* Left Column - Location map */}
         <div className="lg:col-span-2 flex flex-col gap-4">
           <h2 className="text-xl font-semibold text-dark font-serif mb-2">Location</h2>
-          <Map lat={property.coordinates.lat} lng={property.coordinates.lng} />
+          {property.address && (
+            <p className="text-sm text-body/80 font-medium mb-1">
+              <MapPin className="inline w-4 h-4 text-brand mr-1" />
+              {property.address}
+            </p>
+          )}
+          <Map lat={property.coordinates?.lat} lng={property.coordinates?.lng} address={property.address} />
         </div>
         
         {/* Right Column - Booking sticky form */}

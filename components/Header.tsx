@@ -89,8 +89,15 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right side placeholder spacer to keep navigation centered */}
-        <div className="hidden md:block w-[180px]"></div>
+        {/* Right side list property action */}
+        <div className="hidden md:block w-[180px] text-right">
+          <Link 
+            href="/properties/manage?tab=add" 
+            className="inline-flex items-center justify-center px-5 py-2 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-brand text-white hover:bg-brand-hover transition-all duration-300 shadow-sm border border-brand/20 hover:scale-105"
+          >
+            List Property
+          </Link>
+        </div>
       </div>
     </motion.header>
   );

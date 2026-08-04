@@ -7,47 +7,11 @@ import { properties as staticProperties } from "@/data/properties";
 export async function GET() {
   try {
     await dbConnect();
-    let dbProperties = await PropertyModel.find({}).sort({ createdAt: -1 }).lean();
-
-    // Auto-seed if database is empty
-    if (dbProperties.length === 0) {
-      console.log("Database is empty. Seeding initial properties from mock data...");
-      
-      // Map to remove any potential Mongoose fields or custom attributes, ensuring clean insert
-      const cleanProperties = staticProperties.map(p => {
-        // Strip any existing DB properties if present, but since they are from data/properties.ts they should be clean
-        return {
-          title: p.title,
-          code: p.code,
-          city: p.city,
-          state: p.state,
-          propertyType: p.propertyType,
-          rooms: p.rooms,
-          price: p.price,
-          area: p.area,
-          availability: p.availability,
-          coordinates: p.coordinates,
-          gallery: p.gallery,
-          amenities: p.amenities,
-          nearby: p.nearby,
-          description: p.description,
-          floor: p.floor,
-          balcony: p.balcony,
-          parking: p.parking,
-          furnished: p.furnished,
-          status: p.status || "New Listing"
-        };
-      });
-
-      await PropertyModel.insertMany(cleanProperties);
-      dbProperties = await PropertyModel.find({}).sort({ createdAt: -1 }).lean();
-    }
-
+    const dbProperties = await PropertyModel.find({}).sort({ createdAt: -1 }).lean();
     return NextResponse.json(dbProperties);
   } catch (error: any) {
     console.error("GET /api/properties failed:", error);
-    // Fall back gracefully to static mock data in case MongoDB is unconfigured or offline
-    return NextResponse.json(staticProperties);
+    return NextResponse.json([]);
   }
 }
 

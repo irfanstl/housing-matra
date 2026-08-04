@@ -127,7 +127,7 @@ export default function AddPropertyForm({ onSuccess }: AddPropertyFormProps) {
     }
   };
 
-  // Convert image to base64 & upload to API
+  // Convert image and upload to API
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -136,31 +136,25 @@ export default function AddPropertyForm({ onSuccess }: AddPropertyFormProps) {
     setUploadError("");
 
     const uploadPromises = Array.from(files).map((file) => {
-      return new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = async () => {
-          try {
-            const base64Data = reader.result as string;
-            const res = await fetch("/api/upload", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                file: base64Data,
-                fileName: file.name
-              })
-            });
+      return new Promise<string>(async (resolve, reject) => {
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("fileName", file.name);
 
-            const data = await res.json();
-            if (!res.ok) {
-              throw new Error(data.error || "Upload failed");
-            }
-            resolve(data.url);
-          } catch (err: any) {
-            reject(err);
+          const res = await fetch("/api/upload", {
+            method: "POST",
+            body: formData
+          });
+
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.error || "Upload failed");
           }
-        };
-        reader.onerror = () => reject(new Error("File reading failed"));
+          resolve(data.url);
+        } catch (err: any) {
+          reject(err);
+        }
       });
     });
 

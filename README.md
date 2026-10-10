@@ -1,37 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Housing Matra
+
+Housing Matra is a real-estate website for finding verified, premium apartments in India. Visitors can browse featured and full property listings, filter and search them, read about the company's projects, and get in touch to arrange a site visit.
+
+**Live site:** [housing-matra.vercel.app](https://housing-matra.vercel.app)
+
+## Features
+
+- Home page with a hero section and handpicked featured apartments
+- Properties page with search and filters
+- Projects page showcasing developments
+- Contact page for inquiries
+- Simple buying journey: select a location, explore verified homes, connect via WhatsApp, schedule a site visit
+- Property data stored in MongoDB
+- Image upload and delivery through ImageKit
+- Smooth animations with Framer Motion
+- Responsive layout styled with Tailwind CSS
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Framework | Next.js 16 (App Router), React 19 |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 |
+| Database | MongoDB with Mongoose |
+| Media | ImageKit |
+| UI | Framer Motion, Lucide React |
+| Hosting | Vercel |
+
+## Project Structure
+
+```
+housing-matra/
+├── app/            Pages and layouts (home, properties, projects, contact)
+├── backend/        Server-side logic and models
+├── components/     Reusable UI components
+├── data/           Static data
+├── lib/            Helpers and database connection
+├── public/         Static assets
+├── next.config.ts
+└── package.json
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20 or newer
+- A MongoDB database (local or MongoDB Atlas)
+- An ImageKit account (for image uploads)
+
+### 1. Clone and install
+
+```bash
+git clone https://github.com/irfanstl/housing-matra.git
+cd housing-matra
+npm install
+```
+
+### 2. Configure environment variables
+
+Create a `.env.local` file in the project root. Never commit it.
+
+```env
+MONGODB_URI=your-mongodb-connection-string
+IMAGEKIT_PUBLIC_KEY=your-public-key
+IMAGEKIT_PRIVATE_KEY=your-private-key
+IMAGEKIT_URL_ENDPOINT=your-url-endpoint
+```
+
+These names are typical placeholders. Check the files in `lib/` and `backend/` for the exact variable names the code reads, and rename them here to match.
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Run the production build |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The site is deployed on Vercel. To deploy your own copy:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push the repo to GitHub.
+2. Import it on [vercel.com](https://vercel.com).
+3. Add the same environment variables in **Project Settings → Environment Variables**.
+4. Deploy. Every push to `main` redeploys automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Pull requests are welcome. For larger changes, open an issue first to discuss what you would like to change.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# Housing" 
+No license has been specified yet. Add a `LICENSE` file (for example MIT) to state how others may use this code.
